@@ -2,6 +2,7 @@ package com.mufidz.githubusersubmission2.github.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mufidz.githubusersubmission2.R
@@ -12,22 +13,21 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
 
     private val list = ArrayList<UserGitHub>()
     private var onItemClickCallback: OnItemClickCallback? = null
+    private lateinit var viewModel: MainViewModel
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    fun setList(users: ArrayList<UserGitHub>){
+    fun setList(users: ArrayList<UserGitHub>) {
         list.clear()
         list.addAll(users)
         notifyDataSetChanged()
     }
 
-    inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(user : UserGitHub){
-            binding.root.setOnClickListener {
-                onItemClickCallback?.onItemClicked(user)
-            }
+    inner class UserViewHolder(val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: UserGitHub) {
             binding.apply {
                 Glide.with(itemView)
                     .load(user.avatar_url)
@@ -40,7 +40,7 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent,false)
+        val view = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UserViewHolder(view)
     }
 
@@ -50,7 +50,14 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
 
     override fun getItemCount(): Int = list.size
 
-    interface OnItemClickCallback{
+    interface OnItemClickCallback {
         fun onItemClicked(data: UserGitHub)
     }
+}
+
+private fun <T> LiveData<T>.observe(
+    userViewHolder: GithubUserAdapter.UserViewHolder,
+    function: (T) -> Unit
+) {
+
 }

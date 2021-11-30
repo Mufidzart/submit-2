@@ -11,18 +11,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     val listUsers = MutableLiveData<ArrayList<UserGitHub>>()
 
-    fun setSearchUser(query: String){
+    fun setSearchUser(query: String) {
         RetrofitClient.apiInstance
             .getSearchUser(query)
-            .enqueue(object : Callback<UserResponse>{
+            .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         listUsers.postValue(response.body()?.items)
                     }
                 }
@@ -34,7 +34,7 @@ class MainViewModel: ViewModel() {
             })
     }
 
-    fun getSearchUser(): LiveData<ArrayList<UserGitHub>>{
+    fun getSearchUser(): LiveData<ArrayList<UserGitHub>> {
         return listUsers
     }
 }
