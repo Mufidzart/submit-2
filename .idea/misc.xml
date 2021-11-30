@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHub App 2/app/src/main/res/layout/activity_detail_user.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHub App 2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHub App 2/app/src/main/res/layout/item_user.xml" value="0.25" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/drawable/bg_search.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/drawable/rectangle.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/layout/activity_detail_user.xml" value="0.22" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/layout/fragment_followers.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/layout/item_user.xml" value="0.25" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/xml/network_security_config.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

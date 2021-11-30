@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/view_card"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_gravity="center"
+  android:layout_marginRight="10dp"
+  android:layout_marginLeft="10dp"
+  android:layout_marginTop="5dp"
+  android:layout_marginBottom="5dp"
+  app:cardCornerRadius="5dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="5dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+      android:id="@+id/iv_user"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="10dp"
+      app:civ_border_width="2dp"
+      app:civ_border_color="@color/black"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:src="@tools:sample/avatars"/>
+
+    <TextView
+      android:id="@+id/tv_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="20dp"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      android:textStyle="bold"
+      app:layout_constraintStart_toEndOf="@+id/iv_user"
+      app:layout_constraintTop_toTopOf="@+id/iv_user"
+      app:layout_constraintBottom_toTopOf="@+id/tv_company"
+      tools:text="Name" />
+
+    <TextView
+      android:id="@+id/tv_company"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="20dp"
+      android:textColor="@color/black_ori"
+      android:textSize="16sp"
+      app:layout_constraintStart_toEndOf="@+id/iv_user"
+      app:layout_constraintTop_toBottomOf="@+id/tv_name"
+      app:layout_constraintBottom_toTopOf="@+id/tv_repository"
+      tools:text="Company" />
+
+    <TextView
+      android:id="@+id/tv_repository"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="20dp"
+      android:textColor="@color/black_ori"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toBottomOf="@+id/iv_user"
+      app:layout_constraintStart_toEndOf="@+id/iv_user"
+      app:layout_constraintTop_toBottomOf="@+id/tv_company"
+      tools:text="Repository" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
