@@ -1,5 +1,6 @@
 package com.mufidz.githubusersubmission2.github.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

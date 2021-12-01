@@ -4,4 +4,125 @@
   <string name="tab1">Followers</string>
   <string name="tab2">Following</string>
   <string name="search_hint">Search User</string>
+
+
+  <string-array name="username">
+    <item>mufidz</item>
+    <item>heraya</item>
+    <item>jakewharton</item>
+    <item>amitshekhariitbhu</item>
+    <item>romainguy</item>
+    <item>chrisbanes</item>
+    <item>tipsy</item>
+    <item>ravi8x</item>
+    <item>jasoet</item>
+    <item>budioktaviyan</item>
+    <item>hendisantika</item>
+    <item>sidiqpermana</item>
+  </string-array>
+
+  <string-array name="name">
+    <item>Mufidz</item>
+    <item>Heraya</item>
+    <item>Jake Wharton</item>
+    <item>Amit Shekhar</item>
+    <item>Romain Guy</item>
+    <item>Chris Banes</item>
+    <item>David</item>
+    <item>Ravi Tamada</item>
+    <item>Deny Prasetyo</item>
+    <item>Budi Oktaviyan</item>
+    <item>Hendi Santika</item>
+    <item>Sidiq Permana</item>
+  </string-array>
+
+  <string-array name="location">
+    <item>Purwokerto</item>
+    <item>Banjarnegara</item>
+    <item>Pittsburgh, PA, USA</item>
+    <item>New Delhi, India</item>
+    <item>California</item>
+    <item>Sydney, Australia</item>
+    <item>Trondheim, Norway</item>
+    <item>India</item>
+    <item>Kotagede, Yogyakarta, Indonesia</item>
+    <item>Jakarta, Indonesia</item>
+    <item>Bojongsoang - Bandung Jawa Barat</item>
+    <item>Jakarta Indonesia</item>
+  </string-array>
+
+  <string-array name="company">
+    <item>Universitas Amikom Purwokerto</item>
+    <item>Universitas Amikom Purwokerto</item>
+    <item>Google, Inc.</item>
+    <item>MindOrksOpenSource</item>
+    <item>Google</item>
+    <item>Google working on @android</item>
+    <item>Working Group Two</item>
+    <item>AndroidHive | Droid5</item>
+    <item>gojek-engineering</item>
+    <item>KotlinID</item>
+    <item>JVMDeveloperID @KotlinID @IDDevOps</item>
+    <item>Nusantara Beta Studio</item>
+  </string-array>
+
+  <string-array name="avatar">
+    <item>@drawable/mufidz</item>
+    <item>@drawable/heraya</item>
+    <item>@drawable/user1</item>
+    <item>@drawable/user2</item>
+    <item>@drawable/user3</item>
+    <item>@drawable/user4</item>
+    <item>@drawable/user5</item>
+    <item>@drawable/user6</item>
+    <item>@drawable/user7</item>
+    <item>@drawable/user8</item>
+    <item>@drawable/user9</item>
+    <item>@drawable/user10</item>
+  </string-array>
+
+  <string-array name="repository">
+    <item>12</item>
+    <item>14</item>
+    <item>1</item>
+    <item>10</item>
+    <item>8</item>
+    <item>8</item>
+    <item>78</item>
+    <item>8</item>
+    <item>9</item>
+    <item>7</item>
+    <item>15</item>
+    <item>45</item>
+  </string-array>
+
+  <string-array name="followers">
+    <item>753</item>
+    <item>5000</item>
+    <item>56995</item>
+    <item>5153</item>
+    <item>7972</item>
+    <item>14725</item>
+    <item>788</item>
+    <item>18628</item>
+    <item>277</item>
+    <item>178</item>
+    <item>428</item>
+    <item>465</item>
+  </string-array>
+
+  <string-array name="following">
+    <item>120</item>
+    <item>12</item>
+    <item>2</item>
+    <item>2</item>
+    <item>0</item>
+    <item>1</item>
+    <item>0</item>
+    <item>3</item>
+    <item>39</item>
+    <item>23</item>
+    <item>61</item>
+    <item>10</item>
+  </string-array>
 </resources>

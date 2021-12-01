@@ -12,6 +12,9 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.GitHubUserSubmission2">
     <activity
+      android:name=".local.DtailLocal"
+      android:exported="false" />
+    <activity
       android:name=".github.ui.detail.DetailUser"
       android:exported="false" />
     <activity

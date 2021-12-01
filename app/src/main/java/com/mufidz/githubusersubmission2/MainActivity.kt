@@ -2,25 +2,35 @@ package com.mufidz.githubusersubmission2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
 import com.mufidz.githubusersubmission2.databinding.ActivityMainBinding
 import com.mufidz.githubusersubmission2.github.model.UserGitHub
 import com.mufidz.githubusersubmission2.github.ui.GithubUserAdapter
 import com.mufidz.githubusersubmission2.github.ui.MainViewModel
 import com.mufidz.githubusersubmission2.github.ui.detail.DetailUser
+import com.mufidz.githubusersubmission2.local.UserLocal
+import com.mufidz.githubusersubmission2.local.UserLocalAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: GithubUserAdapter
+    private lateinit var rvUser: RecyclerView
+    private val listLocal = ArrayList<UserLocal>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        rvUser = findViewById(R.id.rv_user)
+        rvUser.setHasFixedSize(true)
 
         adapter = GithubUserAdapter()
         adapter.setOnItemClickCallback(object : GithubUserAdapter.OnItemClickCallback {
@@ -35,14 +45,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         binding.apply {
-            rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
-            rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
-
             btnSearch.setOnClickListener {
                 searchUser()
             }
-
             etQuery.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     searchUser()
@@ -53,24 +59,73 @@ class MainActivity : AppCompatActivity() {
         }
         viewModel.getSearchUser().observe(this, {
             if (it != null) {
+                setListLocal(false)
+                val adapter = GithubUserAdapter()
                 adapter.setList(it)
+                rvUser.adapter = adapter
                 showLoading(false)
-            } else {
-
             }
         })
+        searchUser()
     }
 
     private fun searchUser() {
         binding.apply {
             val query = etQuery.text
-            if (query.isNullOrEmpty()) return
-            showLoading(true)
-            viewModel.setSearchUser(query.toString())
+            if (query.isNullOrEmpty()){
+                showRecyclerlist()
+                return
+            } else {
+                showLoading(true)
+                setListLocal(false)
+                viewModel.setSearchUser(query.toString())
+            }
         }
     }
 
     private fun showLoading(state: Boolean) {
         binding.progressBar.visibility = if (state) ProgressBar.VISIBLE else ProgressBar.GONE
+    }
+
+    private val listUserLocal: ArrayList<UserLocal>
+        get() {
+            val dataName = resources.getStringArray(R.array.name)
+            val dataCompany = resources.getStringArray(R.array.company)
+            val dataLocation = resources.getStringArray(R.array.location)
+            val dataRepo = resources.getStringArray(R.array.repository)
+            val dataFollower = resources.getStringArray(R.array.followers)
+            val dataFollowing = resources.getStringArray(R.array.following)
+            val dataPhoto = resources.obtainTypedArray(R.array.avatar)
+            val listUserLocal = ArrayList<UserLocal>()
+            for (i in dataName.indices) {
+                val user = UserLocal(
+                    dataName[i],
+                    dataCompany[i],
+                    dataLocation[i],
+                    dataRepo[i],
+                    dataFollower[i],
+                    dataFollowing[i],
+                    dataPhoto.getResourceId(i, -1)
+                )
+                listUserLocal.add(user)
+            }
+            return listUserLocal
+        }
+
+    private fun showRecyclerlist() {
+        rvUser.layoutManager = LinearLayoutManager(this)
+        val listUserAdapter = UserLocalAdapter(listLocal)
+        rvUser.adapter = listUserAdapter
+        setListLocal(true)
+    }
+
+    private fun setListLocal(state: Boolean){
+        if (state){
+            val listUserAdapter = UserLocalAdapter(listLocal)
+            rvUser.adapter = listUserAdapter
+            listLocal.addAll(listUserLocal)
+        }  else {
+            listLocal.clear()
+        }
     }
 }
