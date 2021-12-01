@@ -33,18 +33,15 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         binding.apply {
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
             rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
 
-//            btnSearch.setOnClickListener {
-//                searchUser()
-//            }
+            btnSearch.setOnClickListener {
+                searchUser()
+            }
 
             etQuery.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {

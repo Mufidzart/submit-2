@@ -20,6 +20,7 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
     fun setList(users: ArrayList<UserGitHub>) {
         list.clear()
         list.addAll(users)
+        notifyDataSetChanged()
     }
 
     inner class UserViewHolder(val binding: ItemUserBinding) :
