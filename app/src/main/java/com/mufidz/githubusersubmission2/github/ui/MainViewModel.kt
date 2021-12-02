@@ -1,5 +1,6 @@
 package com.mufidz.githubusersubmission2.github.ui
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -14,7 +15,7 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel() {
     val listUsers = MutableLiveData<ArrayList<UserGitHub>>()
-
+    private lateinit var context: Context
     fun setSearchUser(query: String) {
         RetrofitClient.apiInstance
             .getSearchUser(query)
@@ -25,6 +26,8 @@ class MainViewModel : ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         listUsers.postValue(response.body()?.items)
+                    } else {
+                        Toast.makeText(context, "User Not Found", Toast.LENGTH_SHORT).show()
                     }
                 }
 
