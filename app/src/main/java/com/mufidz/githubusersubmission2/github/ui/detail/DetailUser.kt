@@ -1,6 +1,8 @@
 package com.mufidz.githubusersubmission2.github.ui.detail
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -12,12 +14,12 @@ class DetailUser : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
     private lateinit var viewModel: DetailUserViewModel
-
+    private val handler = Handler(Looper.getMainLooper())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        showLoading(false)
+        showLoading(true)
         val username = intent.getStringExtra(EXTRA_USERNAME)
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
@@ -48,6 +50,9 @@ class DetailUser : AppCompatActivity() {
             viewPager.adapter = sectionPagerAdapter
             tabs.setupWithViewPager(viewPager)
         }
+        handler.postDelayed({
+            showLoading(false)
+        },3000)
     }
 
     private fun showLoading(state: Boolean) {

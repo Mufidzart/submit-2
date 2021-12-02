@@ -2,14 +2,22 @@ package com.mufidz.githubusersubmission2.local
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.mufidz.githubusersubmission2.R
+import com.mufidz.githubusersubmission2.databinding.ActivityDetailUserBinding
 
 class DtailLocal : AppCompatActivity() {
+
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dtail_local)
+        showLoading(true)
 
         val imgPhoto: ImageView = findViewById(R.id.img_user_detail)
         val tvNama: TextView = findViewById(R.id.tv_name_detail)
@@ -28,6 +36,14 @@ class DtailLocal : AppCompatActivity() {
         tvFollowing.text = user.following
         imgPhoto.setImageResource(user.photo)
 
+        handler.postDelayed({
+            showLoading(false)
+        },3000)
+
+    }
+    private fun showLoading(state: Boolean) {
+        progressBar = findViewById(R.id.progress_barLocal)
+        progressBar.visibility = if (state) ProgressBar.VISIBLE else ProgressBar.GONE
     }
     companion object {
         const val EXTRA_USER = "extra_user"

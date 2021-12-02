@@ -4,22 +4,20 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mufidz.githubusersubmission2.R
+import com.mufidz.githubusersubmission2.databinding.ActivityMainBinding
 import com.mufidz.githubusersubmission2.databinding.ItemUserBinding
 import com.mufidz.githubusersubmission2.github.model.UserGitHub
 import com.mufidz.githubusersubmission2.github.ui.detail.DetailUser
 import com.mufidz.githubusersubmission2.local.DtailLocal
 
 class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>() {
-
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var progressBar: ProgressBar
     private val list = ArrayList<UserGitHub>()
-    private var onItemClickCallback: OnItemClickCallback? = null
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
 
     fun setList(users: ArrayList<UserGitHub>) {
         list.clear()
@@ -30,7 +28,7 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
     inner class UserViewHolder(val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserGitHub) {
-            binding.root.setOnClickListener {
+            binding.root.setOnClickListener{
                 val intent = Intent(it.context, DetailUser::class.java)
                 intent.putExtra(DetailUser.EXTRA_USERNAME, user.login)
                 it.context.startActivity(intent)
@@ -56,8 +54,4 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
     }
 
     override fun getItemCount(): Int = list.size
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: UserGitHub)
-    }
 }

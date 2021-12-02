@@ -40,16 +40,6 @@ class MainActivity : AppCompatActivity() {
         rvUser.setHasFixedSize(true)
 
         adapter = GithubUserAdapter()
-        adapter.setOnItemClickCallback(object : GithubUserAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: UserGitHub) {
-                Log.d("user", data.login)
-                Intent(this@MainActivity, DetailUser::class.java).also {
-                    it.putExtra(DetailUser.EXTRA_USERNAME, data.login)
-                    startActivity(it)
-                }
-            }
-        })
-
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         binding.apply {
             rvUser.adapter = adapter
