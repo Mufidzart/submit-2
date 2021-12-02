@@ -2,9 +2,12 @@ package com.mufidz.githubusersubmission2
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.KeyEvent
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +20,9 @@ import com.mufidz.githubusersubmission2.github.ui.MainViewModel
 import com.mufidz.githubusersubmission2.github.ui.detail.DetailUser
 import com.mufidz.githubusersubmission2.local.UserLocal
 import com.mufidz.githubusersubmission2.local.UserLocalAdapter
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: GithubUserAdapter
     private lateinit var rvUser: RecyclerView
     private val listLocal = ArrayList<UserLocal>()
+    private val handler = Handler(Looper.getMainLooper())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         rvUser.setHasFixedSize(true)
 
         adapter = GithubUserAdapter()
-        adapter.setOnItemClickCallback(object : GithubUserAdapter.OnItemClickCallback {
+        adapter.setOnItemClickCallback(object : GithubUserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: UserGitHub) {
-                showLoading(true)
+                Log.d("user", data.login)
                 Intent(this@MainActivity, DetailUser::class.java).also {
                     it.putExtra(DetailUser.EXTRA_USERNAME, data.login)
                     startActivity(it)
@@ -48,10 +55,12 @@ class MainActivity : AppCompatActivity() {
             rvUser.adapter = adapter
             btnSearch.setOnClickListener {
                 searchUser()
+                if (etQuery.text.isNullOrEmpty()) Toast.makeText(this@MainActivity,"User tidak ditemukan", Toast.LENGTH_SHORT).show()
             }
             etQuery.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     searchUser()
+                    if (etQuery.text.isNullOrEmpty()) Toast.makeText(this@MainActivity,"User tidak ditemukan", Toast.LENGTH_SHORT).show()
                     return@setOnKeyListener true
                 }
                 return@setOnKeyListener false
@@ -73,7 +82,11 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             val query = etQuery.text
             if (query.isNullOrEmpty()){
+                showLoading(true)
                 showRecyclerlist()
+                handler.postDelayed({
+                    showLoading(false)
+                },2000)
                 return
             } else {
                 showLoading(true)
@@ -83,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(state: Boolean) {
+    fun showLoading(state: Boolean) {
         binding.progressBar.visibility = if (state) ProgressBar.VISIBLE else ProgressBar.GONE
     }
 

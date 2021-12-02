@@ -1,5 +1,6 @@
 package com.mufidz.githubusersubmission2.github.ui
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.mufidz.githubusersubmission2.R
 import com.mufidz.githubusersubmission2.databinding.ItemUserBinding
 import com.mufidz.githubusersubmission2.github.model.UserGitHub
+import com.mufidz.githubusersubmission2.github.ui.detail.DetailUser
+import com.mufidz.githubusersubmission2.local.DtailLocal
 
 class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>() {
 
@@ -28,7 +31,9 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserGitHub) {
             binding.root.setOnClickListener {
-                onItemClickCallback?.onItemClicked(user)
+                val intent = Intent(it.context, DetailUser::class.java)
+                intent.putExtra(DetailUser.EXTRA_USERNAME, user.login)
+                it.context.startActivity(intent)
             }
             binding.apply {
                 Glide.with(itemView)

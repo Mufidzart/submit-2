@@ -9,10 +9,12 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.mufidz.githubusersubmission2.MainActivity
 import com.mufidz.githubusersubmission2.R
 import com.mufidz.githubusersubmission2.databinding.ActivityMainBinding
 
 class UserLocalAdapter(private val listUserLocal: ArrayList<UserLocal>): RecyclerView.Adapter<UserLocalAdapter.ListViewHolder>() {
+
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val (name, company, location, repo, follower, following, photo) = listUserLocal[position]
         holder.tvName.text = name
