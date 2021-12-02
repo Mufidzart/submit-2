@@ -26,7 +26,6 @@ class FollowingFragment : Fragment(R.layout.fragment_followers) {
         _binding = FragmentFollowersBinding.bind(view)
 
         adapter = GithubUserAdapter()
-        adapter.notifyDataSetChanged()
 
         binding.apply {
             rvUser.setHasFixedSize(true)

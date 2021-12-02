@@ -7,23 +7,22 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.logging.Logger
 
 object RetrofitClient {
 
     // Custom Interceptor
-    val headerInterceptor = object : Interceptor{
+    val headerInterceptor = object : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
-            var request : Request = chain.request()
+            var request: Request = chain.request()
             request = request.newBuilder()
-                .addHeader("Authorization","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")
+                .addHeader("Authorization", "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")
                 .build()
-            val response : Response = chain.proceed(request)
+            val response: Response = chain.proceed(request)
             return response
         }
     }
     private val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    private val okHttp =  OkHttpClient.Builder().addInterceptor(logger)
+    private val okHttp = OkHttpClient.Builder().addInterceptor(logger)
 
     private const val BASE_URL = "https://api.github.com/"
     val retrofit = Retrofit.Builder()

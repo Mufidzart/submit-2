@@ -1,6 +1,7 @@
 package com.mufidz.githubusersubmission2.github.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,7 @@ class MainViewModel : ViewModel() {
                         listUsers.postValue(response.body()?.items)
                     }
                 }
+
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Log.d("Failure", t.message!!)
                 }

@@ -1,11 +1,9 @@
 package com.mufidz.githubusersubmission2.github.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mufidz.githubusersubmission2.R
@@ -15,7 +13,7 @@ import com.mufidz.githubusersubmission2.github.ui.detail.DetailUser
 
 class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
-    private var _binding : FragmentFollowersBinding? = null
+    private var _binding: FragmentFollowersBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: FollowersViewModel
     private lateinit var adapter: GithubUserAdapter
@@ -28,7 +26,6 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
         _binding = FragmentFollowersBinding.bind(view)
 
         adapter = GithubUserAdapter()
-        adapter.notifyDataSetChanged()
 
         binding.apply {
             rvUser.setHasFixedSize(true)
@@ -37,10 +34,13 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
         }
 
         showLoading(true)
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowersViewModel::class.java)
         viewModel.setListFollowers(username)
-        viewModel.getListFollowers().observe(viewLifecycleOwner,{
-            if (it != null){
+        viewModel.getListFollowers().observe(viewLifecycleOwner, {
+            if (it != null) {
                 adapter.setList(it)
                 showLoading(false)
             }

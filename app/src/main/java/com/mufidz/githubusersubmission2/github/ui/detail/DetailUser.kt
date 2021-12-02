@@ -31,14 +31,20 @@ class DetailUser : AppCompatActivity() {
         viewModel.setUserDetail(username!!)
         viewModel.getUserDetail().observe(this, {
             if (it != null) {
+                val office: String
+                val place: String
+                office = it.company ?: "Unknown Company"
+                place = it.company ?: "Unknown Location"
                 binding.apply {
                     tvNameDetail.text = it.name
                     tvUsername.text = it.login
+                    tvCompanyDetail.text = office
+                    tvLocation.text = place
                     jmlFollower.text = it.followers.toString()
                     jmlFollowing.text = it.following.toString()
-                    jmlRepository.text = it.public_repos.toString()
+                    jmlRepository.text = it.publicRepos.toString()
                     Glide.with(this@DetailUser)
-                        .load(it.avatar_url)
+                        .load(it.avatarUrl)
                         .error(R.drawable.default_avatar)
                         .fitCenter()
                         .into(imgUserDetail)
@@ -52,7 +58,7 @@ class DetailUser : AppCompatActivity() {
         }
         handler.postDelayed({
             showLoading(false)
-        },3000)
+        }, 3000)
     }
 
     private fun showLoading(state: Boolean) {

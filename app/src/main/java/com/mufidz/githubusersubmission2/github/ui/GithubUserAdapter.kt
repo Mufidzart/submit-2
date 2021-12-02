@@ -1,7 +1,6 @@
 package com.mufidz.githubusersubmission2.github.ui
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ProgressBar
@@ -12,7 +11,6 @@ import com.mufidz.githubusersubmission2.databinding.ActivityMainBinding
 import com.mufidz.githubusersubmission2.databinding.ItemUserBinding
 import com.mufidz.githubusersubmission2.github.model.UserGitHub
 import com.mufidz.githubusersubmission2.github.ui.detail.DetailUser
-import com.mufidz.githubusersubmission2.local.DtailLocal
 
 class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>() {
     private lateinit var binding: ActivityMainBinding
@@ -28,7 +26,7 @@ class GithubUserAdapter : RecyclerView.Adapter<GithubUserAdapter.UserViewHolder>
     inner class UserViewHolder(val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserGitHub) {
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 val intent = Intent(it.context, DetailUser::class.java)
                 intent.putExtra(DetailUser.EXTRA_USERNAME, user.login)
                 it.context.startActivity(intent)

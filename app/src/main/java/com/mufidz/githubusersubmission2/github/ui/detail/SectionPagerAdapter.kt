@@ -10,7 +10,8 @@ import com.mufidz.githubusersubmission2.R
 import com.mufidz.githubusersubmission2.github.ui.fragment.FollowersFragment
 import com.mufidz.githubusersubmission2.github.ui.fragment.FollowingFragment
 
-class SectionPagerAdapter(private val mCtx: Context, fm: FragmentManager, data:Bundle) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionPagerAdapter(private val mCtx: Context, fm: FragmentManager, data: Bundle) :
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private var fragmntBundle: Bundle
 
@@ -24,8 +25,8 @@ class SectionPagerAdapter(private val mCtx: Context, fm: FragmentManager, data:B
     override fun getCount(): Int = 2
 
     override fun getItem(position: Int): Fragment {
-        var fragment: Fragment?= null
-        when (position){
+        var fragment: Fragment? = null
+        when (position) {
             0 -> fragment = FollowersFragment()
             1 -> fragment = FollowingFragment()
         }
