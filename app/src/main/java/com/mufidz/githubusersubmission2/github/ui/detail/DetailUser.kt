@@ -30,6 +30,7 @@ class DetailUser : AppCompatActivity() {
         ).get(DetailUserViewModel::class.java)
         viewModel.setUserDetail(username!!)
         viewModel.getUserDetail().observe(this, {
+            setTitle("Detail User " + it.name)
             if (it != null) {
                 val office: String
                 val place: String
@@ -42,9 +43,9 @@ class DetailUser : AppCompatActivity() {
                     tvLocation.text = place
                     jmlFollower.text = it.followers.toString()
                     jmlFollowing.text = it.following.toString()
-                    jmlRepository.text = it.publicRepos.toString()
+                    jmlRepository.text = it.public_repos.toString()
                     Glide.with(this@DetailUser)
-                        .load(it.avatarUrl)
+                        .load(it.avatar_url)
                         .error(R.drawable.default_avatar)
                         .fitCenter()
                         .into(imgUserDetail)

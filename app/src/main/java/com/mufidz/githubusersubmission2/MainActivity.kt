@@ -1,9 +1,12 @@
 package com.mufidz.githubusersubmission2
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mufidz.githubusersubmission2.databinding.ActivityMainBinding
+import com.mufidz.githubusersubmission2.github.menu.FavoriteActivity
 import com.mufidz.githubusersubmission2.github.ui.GithubUserAdapter
 import com.mufidz.githubusersubmission2.github.ui.MainViewModel
 import com.mufidz.githubusersubmission2.local.UserLocal
@@ -73,6 +77,22 @@ class MainActivity : AppCompatActivity() {
         searchUser()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.favorite -> {
+                val i = Intent(this, FavoriteActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
+    }
     private fun searchUser() {
         binding.apply {
             val query = etQuery.text

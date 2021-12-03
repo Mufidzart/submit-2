@@ -27,6 +27,7 @@ class DetailLocal : AppCompatActivity() {
         val tvFollowing: TextView = findViewById(R.id.jml_following)
 
         val user = intent.getParcelableExtra<UserLocal>(EXTRA_USER) as UserLocal
+        setTitle("Detail User " + user.name)
         tvNama.text = user.name
         tvCompany.text = user.company
         tvLocation.text = user.location
