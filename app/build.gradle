@@ -32,8 +32,8 @@ android {
         jvmTarget = '1.8'
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -50,9 +50,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "com.github.bumptech.glide:glide:4.12.0"
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+
 }
