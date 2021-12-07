@@ -15,7 +15,7 @@
     android:text="Tambah User Favorite"/>
 
   <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_user"
+    android:id="@+id/rv_user_favorite"
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:layout_marginTop="16dp"
@@ -30,7 +30,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="@+id/rv_user"
+    app:layout_constraintBottom_toBottomOf="@+id/rv_user_favorite"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />

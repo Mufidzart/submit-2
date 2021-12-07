@@ -13,6 +13,7 @@ class FavoriteHelper(context: Context) {
     private var dataBaseHelper: DatabaseHelper = DatabaseHelper(context)
     private lateinit var database: SQLiteDatabase
 
+//    Singleton
     companion object {
         private const val DATABASE_TABLE = TABLE_NAME
         private var INSTANCE: FavoriteHelper? = null
