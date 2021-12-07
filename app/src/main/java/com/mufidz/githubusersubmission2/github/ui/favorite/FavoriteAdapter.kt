@@ -1,5 +1,6 @@
 package com.mufidz.githubusersubmission2.github.ui.favorite
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +55,4 @@ class FavoriteAdapter (private val onItemClickCallback: OnItemClickCallback) : R
     interface OnItemClickCallback {
         fun onItemClicked(selectedFavorite: Favorite?, position: Int)
     }
-
-
 }

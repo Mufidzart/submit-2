@@ -18,7 +18,10 @@ import com.mufidz.githubusersubmission2.github.db.DatabaseContract
 import com.mufidz.githubusersubmission2.github.db.FavoriteHelper
 import com.mufidz.githubusersubmission2.github.model.Favorite
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
+
+const val ISOFORMAT = "yyyy/MM/dd'T'HH:mm:ss"
 
 class DetailUser : AppCompatActivity(), View.OnClickListener {
 
@@ -94,44 +97,54 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        if (view.id == R.id.btn_add_favorite) {
-            val username = binding.tvUsername.text.toString().trim()
-            if (username.isEmpty()) {
-                binding.tvUsername.error = "Can not get username!"
-                return
-            }
-            favorite?.username = username
+        if (view.id != R.id.btn_add_favorite) return
 
-            val values = ContentValues()
-            values.put(DatabaseContract.FavoriteColumns.USERNAME, username)
-            if (isFavorite){
-                val result = favoriteHelper.deleteByUsername(favorite?.username.toString(), values).toLong()
-                if (result > 0) {
-                    val btnTitle = "Favorite"
-                    favorite.let {
-                        binding.btnAddFavorite.text = btnTitle
-                    }
-                    finish()
-                } else {
-                    Toast.makeText(this, "Gagal membatalkan favorite", Toast.LENGTH_SHORT).show()
+        val username = binding.tvUsername.text.toString().trim()
+        if (username.isEmpty()) {
+            binding.tvUsername.error = "Can not get username!"
+            return
+        }
+        favorite?.username = username
+
+        val values = ContentValues()
+        val dateFormat = SimpleDateFormat(ISOFORMAT);
+        val date = dateFormat.format(Date());
+        values.put(DatabaseContract.FavoriteColumns.USERNAME, username)
+        values.put(DatabaseContract.FavoriteColumns.DATE, date);
+
+        if (isFavorite){
+            Log.d("DEBUG","You Are my favorite",)
+
+            val result = favoriteHelper.deleteByUsername(favorite?.username.toString(), values).toLong()
+            if (result > 0) {
+                val btnTitle = "Favorite"
+                favorite.let {
+                    binding.btnAddFavorite.text = btnTitle
                 }
+                finish()
             } else {
-                favorite?.date = getCurrentDate()
-                values.put(DatabaseContract.FavoriteColumns.DATE, getCurrentDate())
-                val result = favoriteHelper.insert(values)
-                if (result > 0){
-                    val btnTitle = "Unfavorite"
-                    favorite.let {
-                        binding.btnAddFavorite.text = btnTitle
-                    }
-                    val data =
-                    Log.e("data", "dbResponse: " )
-                    Toast.makeText(this, "Sukse menambah data", Toast.LENGTH_SHORT).show()
-                    finish()
-                } else {
-                    Toast.makeText(this, "Gagal menambah data", Toast.LENGTH_SHORT).show()
-                }
+                Toast.makeText(this, "Gagal membatalkan favorite", Toast.LENGTH_SHORT).show()
             }
+
+            return
+        }
+        Log.d("DEBUG","You Are not my favorite")
+        Log.d("DEBUG", values.toString())
+
+        favorite?.date = getCurrentDate()
+        values.put(DatabaseContract.FavoriteColumns.DATE, getCurrentDate())
+        val result = favoriteHelper.insert(values)
+        if (result > 0){
+            val btnTitle = "Unfavorite"
+            favorite.let {
+                binding.btnAddFavorite.text = btnTitle
+            }
+            val data =
+            Log.e("data", "dbResponse: " )
+            Toast.makeText(this, "Sukse menambah data", Toast.LENGTH_SHORT).show()
+            finish()
+        } else {
+            Toast.makeText(this, "Gagal menambah data", Toast.LENGTH_SHORT).show()
         }
     }
 

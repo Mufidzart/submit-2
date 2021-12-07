@@ -17,6 +17,9 @@
         <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/layout/fragment_followers.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/layout/item_user.xml" value="0.25" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/GitHubUserSubmission2/app/src/main/res/xml/network_security_config.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_favorite_user.xml" value="0.14463019250253292" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_user.xml" value="0.67" />
       </map>
     </option>
   </component>
